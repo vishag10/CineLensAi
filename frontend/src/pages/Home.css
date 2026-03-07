@@ -1,0 +1,47 @@
+/* Home Page v2 */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 48px;
+    padding-top: 28px;
+}
+
+.home-title {
+    text-align: center;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.home-error {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--r-md);
+    padding: 14px 18px;
+}
+
+.home-error strong {
+    display: block;
+    color: #FCA5A5;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+}
+
+.home-error pre {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: pre-wrap;
+    font-family: var(--font-body);
+}
+
+.home-result-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}

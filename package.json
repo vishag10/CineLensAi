@@ -1,0 +1,22 @@
+{
+  "name": "cinelens",
+  "version": "1.0.0",
+  "description": "AI-powered movie identification from screenshots",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"wait-on http://localhost:5173 && electron .\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron": "electron .",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^29.0.0",
+    "wait-on": "^7.2.0"
+  },
+  "keywords": ["electron", "ai", "movies", "ollama"],
+  "author": "CineLens",
+  "license": "MIT"
+}

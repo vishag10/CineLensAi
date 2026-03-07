@@ -1,0 +1,300 @@
+/* Upload Zone v2 */
+
+.uz-outer {
+    background: #0f1928;
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+}
+
+/* Header row */
+.uz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+    background: rgba(34, 211, 238, 0.04);
+}
+
+.uz-header-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scan-btn {
+    padding: 9px 28px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    min-width: 100px;
+}
+
+/* Two-column body */
+.uz-body {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    min-height: 340px;
+}
+
+/* Drop zone */
+.uz-dropzone {
+    border-right: 1px solid rgba(34, 211, 238, 0.08);
+    padding: 24px;
+    cursor: pointer;
+    transition: background var(--t-fast);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uz-dropzone:hover {
+    background: rgba(34, 211, 238, 0.03);
+}
+
+.uz-dropzone.drag-over {
+    background: rgba(34, 211, 238, 0.08);
+}
+
+.uz-dropzone.has-preview {
+    cursor: default;
+}
+
+/* Inner dashed box */
+.uz-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    width: 100%;
+    border: 2px dashed rgba(34, 211, 238, 0.3);
+    border-radius: var(--r-lg);
+    padding: 40px 24px;
+    position: relative;
+}
+
+/* Camera glow icon */
+.uz-camera-wrap {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.uz-camera-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--cyan);
+    opacity: 0.5;
+    animation: ring-pulse 2.5s ease-in-out infinite;
+}
+
+.uz-camera-ring-2 {
+    inset: -12px;
+    opacity: 0.2;
+    animation-delay: 0.8s;
+}
+
+@keyframes ring-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 0.15;
+    }
+}
+
+.uz-camera-svg {
+    z-index: 1;
+    filter: drop-shadow(0 0 14px var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uz-cta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.uz-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Sample scenes */
+.uz-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.uz-samples-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.uz-sample-thumbs {
+    display: flex;
+    gap: 8px;
+}
+
+.uz-thumb {
+    width: 84px;
+    height: 52px;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all var(--t-fast);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.uz-thumb:hover {
+    border-color: var(--cyan);
+    transform: scale(1.05);
+}
+
+.uz-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-end;
+    padding: 4px 6px;
+}
+
+.uz-thumb-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Hidden input */
+.uz-hidden-input {
+    display: none;
+}
+
+/* Preview */
+.uz-preview-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+}
+
+.uz-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    display: block;
+}
+
+.uz-clear {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uz-clear:hover {
+    background: rgba(239, 68, 68, 0.6);
+}
+
+/* Right: History Sidebar */
+.uz-history-panel {
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.uz-history-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-body);
+}
+
+.hs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.hs-item {
+    border-radius: var(--r-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all var(--t-fast);
+    min-height: 64px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hs-item:hover {
+    border-color: var(--cyan);
+    transform: scale(1.03);
+}
+
+.hs-filmstrip {
+    display: flex;
+    gap: 3px;
+    padding: 3px 5px;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.hs-hole {
+    width: 5px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.hs-label {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.2;
+}
