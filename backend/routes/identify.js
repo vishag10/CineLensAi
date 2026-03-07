@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     // Strip base64 prefix if present (data:image/jpeg;base64,...)
     const base64Clean = image.replace(/^data:image\/[a-z]+;base64,/, '');
 
-    console.log('🔍 Step 1: Analyzing image with Ollama llama3.2-vision...');
+    console.log('🔍 Analyzing image with Gemini...');
     const aiResult = await analyzeImage(base64Clean);
 
     let searchResult = null;
@@ -27,9 +27,9 @@ router.post('/', async (req, res) => {
     let finalConfidence = aiResult.confidence;
     let method = 'Model Only';
 
-    if (useSearch && aiResult.title !== 'Unknown') {
+    if (useSearch) {
       console.log('🌐 Step 2: Verifying with DuckDuckGo...');
-      const query = buildSearchQuery(aiResult);
+      const query = aiResult.title !== 'Unknown' ? buildSearchQuery(aiResult) : `${aiResult.description} movie`;
       searchResult = await searchMovie(query);
 
       if (searchResult.success) {
