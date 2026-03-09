@@ -19,10 +19,12 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 const identifyRouter = require('./routes/identify');
 const searchRouter = require('./routes/search');
 const historyRouter = require('./routes/history');
+const detectMovieRouter = require('./routes/detectMovie');
 
 app.use('/api/identify', identifyRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/history', historyRouter);
+app.use('/api/detect-movie', detectMovieRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {

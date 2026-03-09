@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { analyzeImage } = require('../services/ollamaService');
+const { analyzeImage } = require('../services/huggingfaceService');
 const { searchMovie, buildSearchQuery } = require('../services/searchService');
 const MovieHistory = require('../models/MovieHistory');
 
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     // Strip base64 prefix if present (data:image/jpeg;base64,...)
     const base64Clean = image.replace(/^data:image\/[a-z]+;base64,/, '');
 
-    console.log('🔍 Analyzing image with Gemini...');
+    console.log('🔍 Analyzing image with HuggingFace LLaVA...');
     const aiResult = await analyzeImage(base64Clean);
 
     let searchResult = null;
@@ -76,9 +76,10 @@ router.post('/', async (req, res) => {
 
   } catch (error) {
     console.error('Identify error:', error.message);
-    res.status(500).json({ 
+    const status = error.response?.status === 429 || error.message.includes('rate limit') ? 429 : 500;
+    res.status(status).json({
       error: error.message || 'Identification failed',
-      hint: error.message.includes('Ollama') ? 'Make sure Ollama is running: ollama serve' : undefined
+      hint: status === 429 ? 'HuggingFace rate limited. Wait a moment and retry, or upgrade your HF plan.' : undefined
     });
   }
 });
